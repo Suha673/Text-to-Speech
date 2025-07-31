@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Text to Speech Bot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🗣️ Text to Speech</h2>
+  <textarea id="text" placeholder="Type something..."></textarea>
+  <br>
+  <button onclick="speak()">Speak</button>
+  <input type="range" id="speed" min="0.5" max="3" step="0.1" value="1.5">
+  <button onclick="pauseSpeech()">Pause</button>
+  <button onclick="resumeSpeech()">Resume</button>
+  <button onclick="stopSpeech()">Stop</button>
+
+  <script>
+    function speak() {
+      const text = document.getElementById("text").value;
+      const utterance = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(utterance);
+      utterance.rate = document.getElementById("speed").value;
+    }
+   
+    
+    function pauseSpeech() {
+      window.speechSynthesis.pause();
+    }
+
+    function resumeSpeech() {
+      window.speechSynthesis.resume();
+    }
+
+    function stopSpeech() {
+      window.speechSynthesis.cancel();
+    }
+
+  </script>
+
+</body>
+</html>
